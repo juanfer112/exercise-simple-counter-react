@@ -13,16 +13,11 @@
 */
 // 1. Config
 // ====================================
-
-// @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
 $color-info: #17a2b8;
 $color-success: #28A745;
 $color-danger: #DC3545;
 $color-body: #121212;
-
 $font-primary: 'Roboto';
-
 $white: #fff;
 
 
@@ -45,11 +40,8 @@ body {
 *:after {
   box-sizing: border-box;
 }
-
-
 // 3. App wrapper
 // ====================================
-
 .appclock {
   width: 320px;
   height: 260px;
@@ -62,12 +54,8 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-
 // 4. Timer
 // ====================================
-
-// Parent block
 .timer {
   display: flex;
   flex-direction: row;
@@ -76,19 +64,18 @@ body {
   margin: 0 0 4em;
   color: $white;
 }
-
 // Card
 .time-card {
   margin: 0 1em;
   text-align: center;
 }
-
 // Card > Count
 .time-card-count {
   width: 70px;
   height: 77px;
   line-height: 77px;
   overflow: hidden;
+  font-size:2.5rem; 
   
   &:after {
     display: block;
@@ -106,8 +93,8 @@ body {
 // Card > Colon
 .colon {
   font-size: 2em;
+  margin-bottom: 1.1rem;
 }
-
 
 // 5. Actions
 // ====================================
@@ -117,8 +104,6 @@ body {
   margin: 0 8px;
   vertical-align: middle;
 }
-
-
 // 6. Button component
 // ====================================
 
@@ -141,7 +126,6 @@ body {
   }
 }
 
-
 // Alternative styles
 $btn-styles: (
   ('success', $color-success),
@@ -153,7 +137,6 @@ $btn-styles: (
   .btn-#{$className} {
     border-color: $color;
     color: $color;
-    
     &:hover {
       background: rgba($color, 0.12);
     }
@@ -161,112 +144,10 @@ $btn-styles: (
 }
 
 // Alternative states
-.btn[disabled] {
+.btn-reset {
   color: $white;
   border-color: $white;
   opacity: 0.5;
-  cursor: not-allowed;
-}
-
-
-// 7. Counters
-// ====================================
-
-// [data-max="24"] .time-card-count:after {
-//   content: '00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23';
-// }
-
-// [data-max="60"] .time-card-count:after {
-//   content: '00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59';
-// }
-
-
-// 8. Checked events
-// ====================================
-
-// Start button
-@each $e, $c, $t in ('hours', 24, 86400s), ('minutes', 60, 3600s), ('seconds', 60, 60s)  {
-  [id="start"]:checked ~ .timer [data-type="#{$e}"] .time-card-count:after {
-    animation: counter $t infinite steps($c) forwards;    
-  }
-}
-
-[id="start"]:checked + [id="stop"]:not(:checked) ~ .actions [for="start"] {
-  display: none;
-}
-
-[id="start"]:checked ~ .actions [for="start"] {
-  @extend .btn-info;
-  font-size: 0;
-  
-  &:after {
-    content: 'Reset';
-    font-size: 14px;
-    letter-spacing: 0.05em;
-  }
-}
-
-[id="start"]:checked ~ .actions [for="stop"] {
-  display: inline-block;
-}
-
-[id="start"]:checked + [id="stop"]:checked ~ .actions [for="reset"] {
-  display: none;
-}
-
-
-// Stop button
-[for="stop"] {
-  display: none;
-}
-
-[id="start"]:checked + [id="stop"]:checked ~ .timer .time-card-count:after {
-  animation-play-state: paused !important;
-}
-
-[id="stop"]:checked ~ .actions [for="stop"] {
-  @extend .btn-success;
-  font-size: 0;
-  
-  &:after {
-    content: 'Start';
-    font-size: 14px;
-    letter-spacing: 0.05em;
-  }
-}
-
-
-// Reset button
-[id="start"]:not(:checked) + [id="stop"]:checked ~ .actions [for="start"]{
-  @extend .btn[disabled];
-}
-
-[id="start"]:not(:checked) + [id="stop"]:checked ~ .regenerate {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  color: $white;
-  cursor: pointer;
-  font-size: 10px;
-  
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-
-// 9.Animations
-// ====================================
-
-@keyframes counter {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
-  }
 }
 
 .title {
