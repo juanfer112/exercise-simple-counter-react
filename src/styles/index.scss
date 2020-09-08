@@ -11,3 +11,150 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+// 1. Config
+// ====================================
+$color-info: #17a2b8;
+$color-success: #28A745;
+$color-danger: #DC3545;
+$color-body: #121212;
+$font-primary: 'Roboto';
+$white: #fff;
+
+
+// 2. Base rules
+// ====================================
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: $color-body;
+  font: 400 100% $font-primary, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+// 3. App wrapper
+// ====================================
+.appclock {
+  width: 320px;
+  height: 260px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -130px 0 0 -160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+// 4. Timer
+// ====================================
+.timer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 4em;
+  color: $white;
+}
+// Card
+.time-card {
+  margin: 0 1em;
+  text-align: center;
+}
+// Card > Count
+.time-card-count {
+  width: 70px;
+  height: 77px;
+  line-height: 77px;
+  overflow: hidden;
+  font-size:2.5rem; 
+  
+  &:after {
+    display: block;
+    font-size: 4em;
+  }
+}
+
+// Card > Label
+.time-card-label {
+  font-size: 0.625em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+// Card > Colon
+.colon {
+  font-size: 2em;
+  margin-bottom: 1.1rem;
+}
+
+// 5. Actions
+// ====================================
+
+// Buttons
+.actions .btn {
+  margin: 0 8px;
+  vertical-align: middle;
+}
+// 6. Button component
+// ====================================
+
+// Default class
+.btn {
+  min-width: 100px;
+  padding: 8px 24px;
+  display: inline-block;
+  border: solid 1px transparent;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  background: none;
+  transition: background 0.25s ease-out;
+  cursor: pointer;
+  white-space: nowrap;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// Alternative styles
+$btn-styles: (
+  ('success', $color-success),
+  ('danger', $color-danger),
+  ('info', $color-info)
+);
+
+@each $className, $color in $btn-styles {
+  .btn-#{$className} {
+    border-color: $color;
+    color: $color;
+    &:hover {
+      background: rgba($color, 0.12);
+    }
+  }
+}
+
+// Alternative states
+.btn-reset {
+  color: $white;
+  border-color: $white;
+  opacity: 0.5;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.btn {
+    margin: auto;
+}
+
